@@ -1,24 +1,31 @@
 <% layout('/layouts/boilerplate.ejs') -%>
 
-    <body>
-        <div class="row mt-3">
-            <div class="col-6 offset-3">
-                <h1>LogIn on WanderLust</h1>
-                <br>
-                <form action="/login" method="post" novalidate class="needs-validation">
-                    <div class="mb-3">
-                        <label for="title">Username</label>
-                        <input type="text" name="username" placeholder="Enter username" class="form-control"
-                            required>
-                    </div>
+<div class="row mt-4 mb-4">
+    <div class="col-12 col-sm-10 col-md-8 col-lg-5 mx-auto">
+        <div class="card shadow-sm border-0 p-4 rounded-4 bg-white">
+            <h2 class="fw-bold mb-1 text-center">Welcome Back</h2>
+            <p class="text-muted text-center mb-4">Log in to your Wanderlust account</p>
 
-                    <div class="mb-3">
-                        <label for="image">Password</label>
-                        <input type="password" name="password" placeholder="Enter password"
-                            class="form-control" required>
-                    </div>
-                    <button class="btn btn-dark mt-3 add-btn mb-3">LogIn</button>
-                </form>
+            <form action="/login" method="post" novalidate class="needs-validation">
+                <div class="mb-3">
+                    <label for="username" class="form-label fw-semibold">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter username" class="form-control form-control-lg fs-6" required>
+                    <div class="invalid-feedback">Please enter your username.</div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="password" class="form-label fw-semibold">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter password" class="form-control form-control-lg fs-6" required>
+                    <div class="invalid-feedback">Please enter your password.</div>
+                </div>
+
+                <button class="btn btn-dark add-btn w-100 py-2 fs-6 fw-semibold">Log In</button>
+            </form>
+
+            <div class="text-center mt-3 pt-3 border-top">
+                <span class="text-muted small">Don't have an account?</span>
+                <a href="/signup" class="text-decoration-none fw-semibold ms-1" style="color: #fe424d;">Sign up</a>
             </div>
         </div>
-    </body>
+    </div>
+</div>

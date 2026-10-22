@@ -1,24 +1,27 @@
-<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="/"><i class="fa-solid fa-compass"></i></a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
+<nav class="navbar navbar-expand-md bg-white border-bottom sticky-top">
+    <div class="container-fluid px-3 px-md-4">
+        <a class="navbar-brand d-flex align-items-center" href="/">
+            <i class="fa-solid fa-compass me-2"></i>
+            <span class="fw-bold d-none d-sm-inline" style="color: #fe424d; font-size: 1.25rem;">wanderlust</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup"
+            aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-            <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="/">Home</a>
-                <a class="nav-link" href="/listings">All Listings</a>
-                <a class="nav-link" href="/listings/new">Add New Listing</a>
+            <div class="navbar-nav me-auto">
+                <a class="nav-link" href="/listings">Explore Listings</a>
+                <a class="nav-link" href="/listings/new">Airbnb your home</a>
             </div>
             <div class="navbar-nav ms-auto">
-                <% if(!currentUser) {%>
-                    <a class="nav-link active" aria-current="page" href="/signup">sign Up</a>
-                    <a class="nav-link" href="/login">Log In</a>
+                <% if(!currentUser) { %>
+                    <a class="nav-link" href="/signup"><b>Sign up</b></a>
+                    <a class="nav-link" href="/login"><b>Log in</b></a>
+                <% } else { %>
+                    <span class="nav-link text-muted d-none d-md-inline">Hi, <%= currentUser.username %></span>
+                    <a class="nav-link" href="/logout">Log out</a>
                 <% } %>
-                <% if(currentUser) {%>
-                    <a class="nav-link" href="/logout">Log Out</a>
-                <% } %>
-                </div>
+            </div>
         </div>
     </div>
 </nav>
