@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 const initData = require('./data.js');
 const Listing = require('../models/listing.js');
+const User = require('../models/user.js');
 
 if (process.env.NODE_ENV !== "production") {
     require('dotenv').config({ path: '../.env' });
@@ -39,20 +40,38 @@ const main = async () => {
 
 main()
 .then(async () => {
-    console.log('Database Connected');
+    console.log('Database Connected successfully');
     await initialize();
-    mongoose.connection.close();
+    await mongoose.connection.close();
+    console.log('Database Connection closed');
 })
 .catch((err) => {
-    console.log(err);
+    console.log('Database Connection Error:', err);
 });
 
 let initialize = async () => {
     await Listing.deleteMany({});
-    initData.data = initData.data.map((e) => ({
+    
+    // Check for existing owner user or create a default one
+    let user = await User.findById('6ad487b786cf14320b1a514d');
+    if (!user) {
+        user = await User.findOne({});
+    }
+    if (!user) {
+        const newUser = new User({
+            email: 'manntomar46@gmail.com',
+            username: 'Mann Tomar',
+        });
+        user = await User.register(newUser, 'mann123');
+        console.log(`Created default user: ${user.username} (${user._id})`);
+    } else {
+        console.log(`Using existing user: ${user.username} (${user._id})`);
+    }
+
+    const listingsWithOwner = initData.data.map((e) => ({
         ...e,
-        owner: '6ad487b786cf14320b1a514d',
+        owner: user._id,
     }));
-    await Listing.insertMany(initData.data);
-    console.log("Data was initialized");
+    await Listing.insertMany(listingsWithOwner);
+    console.log(`Initialized ${listingsWithOwner.length} listings in database!`);
 };
