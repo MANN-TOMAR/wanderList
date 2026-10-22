@@ -5,13 +5,16 @@
   "license": "ISC",
   "author": "mann tomar",
   "type": "commonjs",
-  "main": "index.js",
+  "main": "app.js",
   "scripts": {
+    "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "connect-flash": "^0.1.1",
+    "connect-mongo": "^6.0.0",
     "cookie-parser": "^1.4.7",
+    "dotenv": "^18.0.8",
     "ejs": "^6.0.1",
     "ejs-mate": "^4.0.0",
     "express": "^5.2.1",

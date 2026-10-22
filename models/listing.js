@@ -1,17 +1,6 @@
 const mongoose = require("mongoose");
 const Review = require("./review");
 
-const main = async () => {
-  mongoose.connect("mongodb://127.0.0.1:27017/wanderList");
-};
-main()
-  .then(() => {
-    console.log("Added Succesfully");
-  })
-  .catch((err) => {
-    console.log(err);
-  });
-
 const listingSchema = mongoose.Schema({
   title: {
     type: String,
